@@ -15,9 +15,9 @@
         - "tree"
       register: pkg_status # Save all loop results here
 
-    - name: Show a report of what happened
-      ansible.builtin.debug:
-        msg: "Package '{{ item.item }}' was changed: {{ item.changed }}"
-      loop: "{{ pkg_status.results }}"
-      loop_control:
-        label: "{{ item.item }}"
+    # - name: Show a report of what happened
+    #   ansible.builtin.debug:
+    #     msg: "Package '{{ item.item }}' was changed: {{ item.changed }}"
+    #   loop: "{{ pkg_status.results }}"
+    #   loop_control:
+    #     label: "{{ item.item }}"
