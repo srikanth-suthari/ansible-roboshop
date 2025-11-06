@@ -6,7 +6,7 @@
 
   tasks:
     - name: Check status of several packages
-      ansible.builtin.homebrew:
+      ansible.builtin.dnf:
         name: "{{ item }}"
         state: present
       loop:
