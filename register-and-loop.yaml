@@ -21,3 +21,7 @@
     #   loop: "{{ pkg_status.results }}"
     #   loop_control:
     #     label: "{{ item.item }}"
+
+    - name: printing the pkg_stattus variable
+      ansible.builtin.debug:
+        msg: "{{ pkg_status }}"
