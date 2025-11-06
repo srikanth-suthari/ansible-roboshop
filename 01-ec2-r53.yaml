@@ -1,0 +1,52 @@
+- name: Create EC2 instances and Route 53 Records
+  hosts: local
+  connection: local
+  vars:
+    ami_id: ami-09c813fb71547fc4f
+    sg_id: sg-076be1371a703c56d
+    zone_id: Z0025515EZ5XKJ77DXMH
+    domain_name: srikanth-suthari.me
+    instances:
+    - mongo
+    - mysql
+  tasks:
+  - name: create ec2 instance
+    amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      instance_type: t3.micro
+      security_group: "{{ sg_id }}"
+      image_id: "{{ ami_id }}"
+      tags:
+        Name: "{{ item }}"
+    loop: "{{ instances }}"
+    register: ec2_output
+
+  # - name: destroing the instance using instance id
+  #   amazon.aws.ec2_instance:
+  #     state: absent
+  #     filters:
+  #       instance_id:
+  #       - i-016bdd2111928cd9a
+
+  # - name: printing the output
+  #   ansible.builtin.debug:
+  #     msg: "{{ ec2_output }}"
+
+  # - name: printing the public_ip
+  #   ansible.builtin.debug:
+  #     msg: "The public ip is: {{ item.instaces[0].public_ip_address }}"
+  #   loop: "{{ ec2_output.results }}"
+
+  - name: print the actual output
+    ansible.builtin.debug:
+      msg: "{{ ec2_output }}"
+
+  # - name: storing public ip
+  #   ansible.builtin.debug:
+  #     msg: "{{ ec2_output.results[0].instances[0].public_ip_address }}"
+  #   loop: "{{ ec2_output.results[0].instances }}"
+
+  - name: print public ip
+    ansible.builtin.debug:
+      msg: "{{ ec2_output.results[0].instances[0].private_ip_address }}"
+    loop: "{{ ec2_output.results.instances[0] }}"
