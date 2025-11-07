@@ -24,4 +24,4 @@
 
     - name: printing the pkg_stattus variable
       ansible.builtin.debug:
-        msg: "{{ pkg_status }}"
+        msg: "{{ pkg_status.results }}"

@@ -1,0 +1,144 @@
+{
+    "msg": {
+        "changed": false,
+        "msg": "All items completed",
+        "results": [
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allow_downgrade": false,
+                        "allowerasing": false,
+                        "autoremove": false,
+                        "bugfix": false,
+                        "cacheonly": false,
+                        "conf_file": null,
+                        "disable_excludes": null,
+                        "disable_gpg_check": false,
+                        "disable_plugin": [],
+                        "disablerepo": [],
+                        "download_dir": null,
+                        "download_only": false,
+                        "enable_plugin": [],
+                        "enablerepo": [],
+                        "exclude": [],
+                        "install_repoquery": true,
+                        "install_weak_deps": true,
+                        "installroot": "/",
+                        "list": null,
+                        "lock_timeout": 30,
+                        "name": [
+                            "git"
+                        ],
+                        "nobest": false,
+                        "releasever": null,
+                        "security": false,
+                        "skip_broken": false,
+                        "sslverify": true,
+                        "state": "present",
+                        "update_cache": false,
+                        "update_only": false,
+                        "validate_certs": true
+                    }
+                },
+                "item": "git",
+                "msg": "Nothing to do",
+                "rc": 0,
+                "results": []
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allow_downgrade": false,
+                        "allowerasing": false,
+                        "autoremove": false,
+                        "bugfix": false,
+                        "cacheonly": false,
+                        "conf_file": null,
+                        "disable_excludes": null,
+                        "disable_gpg_check": false,
+                        "disable_plugin": [],
+                        "disablerepo": [],
+                        "download_dir": null,
+                        "download_only": false,
+                        "enable_plugin": [],
+                        "enablerepo": [],
+                        "exclude": [],
+                        "install_repoquery": true,
+                        "install_weak_deps": true,
+                        "installroot": "/",
+                        "list": null,
+                        "lock_timeout": 30,
+                        "name": [
+                            "htop"
+                        ],
+                        "nobest": false,
+                        "releasever": null,
+                        "security": false,
+                        "skip_broken": false,
+                        "sslverify": true,
+                        "state": "present",
+                        "update_cache": false,
+                        "update_only": false,
+                        "validate_certs": true
+                    }
+                },
+                "item": "htop",
+                "msg": "Nothing to do",
+                "rc": 0,
+                "results": []
+            },
+            {
+                "ansible_loop_var": "item",
+                "changed": false,
+                "failed": false,
+                "invocation": {
+                    "module_args": {
+                        "allow_downgrade": false,
+                        "allowerasing": false,
+                        "autoremove": false,
+                        "bugfix": false,
+                        "cacheonly": false,
+                        "conf_file": null,
+                        "disable_excludes": null,
+                        "disable_gpg_check": false,
+                        "disable_plugin": [],
+                        "disablerepo": [],
+                        "download_dir": null,
+                        "download_only": false,
+                        "enable_plugin": [],
+                        "enablerepo": [],
+                        "exclude": [],
+                        "install_repoquery": true,
+                        "install_weak_deps": true,
+                        "installroot": "/",
+                        "list": null,
+                        "lock_timeout": 30,
+                        "name": [
+                            "tree"
+                        ],
+                        "nobest": false,
+                        "releasever": null,
+                        "security": false,
+                        "skip_broken": false,
+                        "sslverify": true,
+                        "state": "present",
+                        "update_cache": false,
+                        "update_only": false,
+                        "validate_certs": true
+                    }
+                },
+                "item": "tree",
+                "msg": "Nothing to do",
+                "rc": 0,
+                "results": []
+            }
+        ],
+        "skipped": false
+    }
+}
