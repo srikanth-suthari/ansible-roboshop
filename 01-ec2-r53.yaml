@@ -21,37 +21,18 @@
     loop: "{{ instances }}"
     register: ec2_output
 
-  # - name: destroing the instance using instance id
-  #   amazon.aws.ec2_instance:
-  #     state: absent
-  #     filters:
-  #       instance_id:
-  #       - i-016bdd2111928cd9a
+  - name: Get all public IPs
+    set_fact:
+      public_ips: "{{ ec2_output.results | map(attribute='instances') | flatten | map(attribute='public_ip_address') | list }}"
 
-  # - name: printing the output
-  #   ansible.builtin.debug:
-  #     msg: "{{ ec2_output }}"
-
-  # - name: printing the public_ip
-  #   ansible.builtin.debug:
-  #     msg: "The public ip is: {{ item.instaces[0].public_ip_address }}"
-  #   loop: "{{ ec2_output.results }}"
-
-  # - name: print the actual output
-  #   ansible.builtin.debug:
-  #     msg: "{{ ec2_output }}"
-
-  # - name: storing public ip
-  #   ansible.builtin.debug:
-  #     msg: "{{ ec2_output.results[0].instances[0].public_ip_address }}"
-  #   loop: "{{ ec2_output.results[0].instances }}"
-
-  - name: print public ip
+  - name: public ips
     ansible.builtin.debug:
-      msg: "{{ item.instances[0].private_ip_address }}"
-    loop: "{{ ec2_output.results }}"
+      var: public_ips
 
-  - name: instance ids
+  - name: Get all private IPs
+    set_fact:
+      private_ips: "{{ ec2_output.results | map(attribute='instances') | flatten | map(attribute='private_ip_address') | list }}"
+
+  - name: private ips
     ansible.builtin.debug:
-      msg: "The instance id of {{ item }} is: {{ item.instance_ids }}"
-    loop: "{{ ec2_output.results }}"
+      var: private_ips
