@@ -9,6 +9,8 @@
     instances:
     - mongo
     - mysql
+    - frontend
+
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
@@ -36,3 +38,38 @@
   - name: private ips
     ansible.builtin.debug:
       var: private_ips
+
+  # - name: Create route53 record
+  #   amazon.aws.route53:
+  #     state: present
+  #     zone: "{{ domain_name }}"
+  #     record: "{{ item.item }}.{{ domain_name }}"   #This create a record for mongo and mysql as mogno.srikanth-suthari.me
+  #     type: A
+  #     value: "{{ item.public_ips }}"
+  #     overwrite: true
+  #   when: item.item == "frontend"
+  #   loop: "{{ ec2_output.results }}"
+
+  - name: create route53 record
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}.{{ domain_name }}" # mongo.srikanth-suthari.me and mysql.srikanht-suthari.me
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+      overwrite: true
+    loop: "{{ ec2_output.results }}"
+
+  # we are creating one record with public only for frontend
+  - name: create route53 record for frontend
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ domain_name }}" # srikanth-suthari.me
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address }}"
+      overwrite: true
+    when: item.item == "frontend"
+    loop: "{{ ec2_output.results }}"
