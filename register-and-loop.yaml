@@ -2,17 +2,24 @@
 - name: Simple 'register' and 'loop' example
   hosts: localhost  # Runs on your own machine
   connection: local
-  become: true      # Uses 'sudo' for the 'apt' command
+  become: false      # pass the extra vars from the command line while running the playbook
+  # become_ask_pass: true
+  gather_facts: false
+
+#####################
+# Run this command to execute and check for the below pacages if they are installed
+# ansible-playbook register-and-loop.yaml --connection=local --extra-vars "ansible_become=false"
 
   tasks:
     - name: Check status of several packages
-      ansible.builtin.dnf:
+      ansible.builtin.homebrew:
         name: "{{ item }}"
         state: present
       loop:
         - "git"
         - "htop"
         - "tree"
+        - "python3"
       register: pkg_status # Save all loop results here
 
     # - name: Show a report of what happened
