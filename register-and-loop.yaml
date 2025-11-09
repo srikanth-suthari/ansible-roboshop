@@ -32,3 +32,9 @@
     - name: printing the pkg_stattus variable
       ansible.builtin.debug:
         msg: "{{ pkg_status.results }}"
+
+    # - name: print the installed packages
+    #   ansible.builtin.debug:
+    #     # msg: "{{ pkg_status.results | map(attribute='instances') | flatten | map(attribute='public_ip_address') | list }}"
+    #     msg: "{{ pkg_status.results.item.name }}"
+    #   loop: "{{ loop.item }}"
