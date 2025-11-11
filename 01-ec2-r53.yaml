@@ -8,7 +8,7 @@
     domain_name: srikanth-suthari.me
     instances:
     - mongo
-    - mysql
+    - mysql-a
     - frontend
 
   tasks:
@@ -27,7 +27,7 @@
     set_fact:
       public_ips: "{{ ec2_output.results | map(attribute='instances') | flatten | map(attribute='public_ip_address') | list }}"
 
-  - name: public ips
+  - name: public ipss
     ansible.builtin.debug:
       var: public_ips
 
@@ -38,6 +38,10 @@
   - name: private ips
     ansible.builtin.debug:
       var: private_ips
+
+  - name: print priveate ips
+    ansible.builtin.debug:
+      msg: "{{ private_ips }}"
 
   # - name: Create route53 record
   #   amazon.aws.route53:
