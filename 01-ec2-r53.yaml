@@ -25,13 +25,13 @@
 
   - name: Get all public IPs set_fact
     ansible.builtin.set_fact:
-    public_ips: "{{ ec2_output.results | map(attribute='instances') | flatten |
-     map (attribute='public_ip_address') | list }}"
+     public_ips: "{{ ec2_output.results | map(attribute='instances') | flatten |
+      map (attribute='public_ip_address') | list }}"
 
   - name: Get all private IPs set_fact
     ansible.builtin.set_fact:
-    private_ips: "{{ ec2_output.results | map(attribute='instances') | flatten |
-     map (attribute='private_ip_address') | list }}"
+      private_ips: "{{ ec2_output.results | map(attribute='instances') | flatten |
+       map (attribute='private_ip_address') | list }}"
 
   - name: private ips
     ansible.builtin.debug:
