@@ -23,17 +23,15 @@
     loop: "{{ instances }}"
     register: ec2_output
 
-  - name: Get all public IPs
-    set_fact:
-      public_ips: "{{ ec2_output.results | map(attribute='instances') | flatten | map(attribute='public_ip_address') | list }}"
+  - name: Get all public IPs set_fact
+    ansible.builtin.set_fact:
+    public_ips: "{{ ec2_output.results | map(attribute='instances') | flatten |
+     map (attribute='public_ip_address') | list }}"
 
-  - name: public ipss
-    ansible.builtin.debug:
-      var: public_ips
-
-  - name: Get all private IPs
-    set_fact:
-      private_ips: "{{ ec2_output.results | map(attribute='instances') | flatten | map(attribute='private_ip_address') | list }}"
+  - name: Get all private IPs set_fact
+    ansible.builtin.set_fact:
+    private_ips: "{{ ec2_output.results | map(attribute='instances') | flatten |
+     map (attribute='private_ip_address') | list }}"
 
   - name: private ips
     ansible.builtin.debug:
